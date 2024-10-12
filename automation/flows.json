@@ -1,0 +1,61 @@
+[
+    {
+        "id": "9",
+        "type": "inject",
+        "z": "flow4",
+        "name": "Check Temperature",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 100,
+        "wires": [["10"]]
+    },
+    {
+        "id": "10",
+        "type": "function",
+        "z": "flow4",
+        "name": "Check Temperature",
+        "func": "if (msg.payload > 30) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 300,
+        "y": 100,
+        "wires": [["11"], ["12"]]
+    },
+    {
+        "id": "11",
+        "type": "email",
+        "z": "flow4",
+        "server": "smtp.your-email.com",
+        "port": "587",
+        "secure": false,
+        "auth": {
+            "user": "your-email@example.com",
+            "pass": "your-password"
+        },
+        "to": "recipient@example.com",
+        "subject": "High Temperature Alert",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "12",
+        "type": "debug",
+        "z": "flow4",
+        "name": "Temperature Normal",
+        "active": true,
+        "tos": "console",
+        "t": "log",
+        "x": 500,
+        "y": 120,
+        "wires": []
+    }
+]

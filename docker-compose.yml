@@ -1,16 +1,27 @@
+version: '3'
 services:
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-config:/mosquitto/config
+
   nodered:
     image: nodered/node-red
     ports:
       - "1880:1880"
     volumes:
       - node-red-data:/data
-      - ./mqtt/flows.json:/data/flows.json
-      - ./api/flows.json:/data/api-flows.json
-      - ./dashboard/flows.json:/data/dashboard-flows.json
-      - ./automation/flows.json:/data/automation-flows.json
+      - ./mqtt/flows.json:/data/lib/flows/flows.json
+      - ./api/flows.json:/data/lib/flows/api-flows.json
+      - ./dashboard/flows.json:/data/lib/flows/dashboard-flows.json
+      - ./automation/flows.json:/data/lib/flows/automation-flows.json
     environment:
       - NODE_RED_ENABLE_SAFE_MODE=true
 
 volumes:
   node-red-data:
+  mosquitto-data:
+  mosquitto-config:

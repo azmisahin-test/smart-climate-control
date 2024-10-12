@@ -1,0 +1,40 @@
+[
+    {
+        "id": "1",
+        "type": "mqtt in",
+        "z": "flow1",
+        "name": "Temperature Sensor",
+        "topic": "home/sensors/temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "mqtt-broker",
+        "x": 100,
+        "y": 100,
+        "wires": [["2"]]
+    },
+    {
+        "id": "2",
+        "type": "mqtt in",
+        "z": "flow1",
+        "name": "Humidity Sensor",
+        "topic": "home/sensors/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "mqtt-broker",
+        "x": 100,
+        "y": 200,
+        "wires": [["3"]]
+    },
+    {
+        "id": "3",
+        "type": "debug",
+        "z": "flow1",
+        "name": "Sensor Data",
+        "active": true,
+        "tos": "console",
+        "t": "log",
+        "x": 300,
+        "y": 150,
+        "wires": []
+    }
+]

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nodered:
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - node-red-data:/data
+      - ./mqtt/flows.json:/data/flows.json
+      - ./api/flows.json:/data/api-flows.json
+      - ./dashboard/flows.json:/data/dashboard-flows.json
+      - ./automation/flows.json:/data/automation-flows.json
+    environment:
+      - NODE_RED_ENABLE_SAFE_MODE=true
+
+volumes:
+  node-red-data:

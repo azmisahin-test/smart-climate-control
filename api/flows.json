@@ -1,0 +1,43 @@
+[
+    {
+        "id": "4",
+        "type": "inject",
+        "z": "flow2",
+        "name": "Fetch Weather Data",
+        "props": [],
+        "repeat": "600",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 100,
+        "wires": [["5"]]
+    },
+    {
+        "id": "5",
+        "type": "http request",
+        "z": "flow2",
+        "name": "Get Weather Data",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY",
+        "tls": "",
+        "x": 300,
+        "y": 100,
+        "wires": [["6"]]
+    },
+    {
+        "id": "6",
+        "type": "debug",
+        "z": "flow2",
+        "name": "Weather Data",
+        "active": true,
+        "tos": "console",
+        "t": "log",
+        "x": 500,
+        "y": 100,
+        "wires": []
+    }
+]
